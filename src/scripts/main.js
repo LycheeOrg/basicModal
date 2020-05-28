@@ -105,8 +105,8 @@ const build = function(data) {
 	// Action-button
 	if (data.buttons.action!=null) {
 		let html_attributes = ''
-		if(data.buttons.cancel.attributes!==null) {
-			data.buttons.cancel.attributes.forEach(function (item, index) {
+		if(data.buttons.action.attributes!==null) {
+			data.buttons.action.attributes.forEach(function (item, index) {
 			  html_attributes += `${item[0]}='${item[1]}' `;
 			});
 		}
