@@ -110,7 +110,7 @@ const build = function(data) {
 			  html_attributes += `${item[0]}='${item[1]}' `;
 			});
 		}
-		html += `<a id='basicModal__action' class='basicModal__button ${ data.buttons.action.class }' ${ html_tabindex  }>${ data.buttons.action.title }</a>`
+		html += `<a id='basicModal__action' class='basicModal__button ${ data.buttons.action.class }' ${ html_attributes  }>${ data.buttons.action.title }</a>`
 
 	}
 
