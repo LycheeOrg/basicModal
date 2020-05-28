@@ -83,23 +83,30 @@ const build = function(data) {
 
 	// Cancel-button
 	if (data.buttons.cancel!=null) {
+		let html_tabindex = ''
+		if(data.buttons.cancel.tabIndex!==null) {
+			html_tabindex = `tabindex='${data.buttons.cancel.tabIndex}'`
+		}
 		if (data.buttons.cancel.class.indexOf('basicModal__xclose')===-1) {
 
 			// Default close-button
-			html +=	`<a id='basicModal__cancel' class='basicModal__button ${ data.buttons.cancel.class }'>${ data.buttons.cancel.title }</a>`
+			html +=	`<a id='basicModal__cancel' class='basicModal__button ${ data.buttons.cancel.class }' ${ html_tabindex } >${ data.buttons.cancel.title }</a>`
 
 		} else {
 
 			// Custom close-button for the login-theme
-			html += `<div id='basicModal__cancel' class='basicModal__button ${ data.buttons.cancel.class }' aria-label='close'>${ icon }</div>`
+			html += `<div id='basicModal__cancel' class='basicModal__button ${ data.buttons.cancel.class }' aria-label='close' ${ html_tabindex } >${ icon }</div>`
 
 		}
 	}
 
 	// Action-button
 	if (data.buttons.action!=null) {
-
-		html += `<a id='basicModal__action' class='basicModal__button ${ data.buttons.action.class }'>${ data.buttons.action.title }</a>`
+		let html_tabindex = ''
+		if(data.buttons.action.tabIndex!==null) {
+			html_tabindex = `tabindex='${data.buttons.cancel.tabIndex}'`
+		}
+		html += `<a id='basicModal__action' class='basicModal__button ${ data.buttons.action.class }' ${ html_tabindex  }>${ data.buttons.action.title }</a>`
 
 	}
 
