@@ -104,7 +104,7 @@ const build = function(data) {
 	if (data.buttons.action!=null) {
 		let html_tabindex = ''
 		if(data.buttons.action.tabIndex!==null) {
-			html_tabindex = `tabindex='${data.buttons.cancel.tabIndex}'`
+			html_tabindex = `tabindex='${data.buttons.action.tabIndex}'`
 		}
 		html += `<a id='basicModal__action' class='basicModal__button ${ data.buttons.action.class }' ${ html_tabindex  }>${ data.buttons.action.title }</a>`
 
