@@ -5,7 +5,7 @@ export const THEME = {
 	xclose : 'basicModal__xclose'
 }
 
-const dom = function(elem = '', multiple = false) {
+export const dom = function(elem = '', multiple = false) {
 
 	if (multiple===true) return document.querySelectorAll('.basicModal ' + elem)
 	else                 return document.querySelector('.basicModal ' + elem)
