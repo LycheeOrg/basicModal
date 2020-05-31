@@ -238,6 +238,14 @@ export const show = function(data) {
 	let select = dom('select')
 	if (input==null && select!=null) select.focus()
 
+	// If there is no input/select but an action button, select it
+	let action = dom('#basicModal__action')
+	if (input==null && select==null && action!=null) action.focus()
+
+	// If there is no input/select/action but a cancel button, select it
+	let cancel = dom('#basicModal__cancel')
+	if (input==null && select==null && action==null && cancel!=null) cancel.focus()
+
 	// Execute callback when available
 	if (data.callback!=null) data.callback(data)
 
