@@ -5,7 +5,7 @@ export const THEME = {
 	xclose : 'basicModal__xclose'
 }
 
-const dom = function(elem = '', multiple = false) {
+export const dom = function(elem = '', multiple = false) {
 
 	if (multiple===true) return document.querySelectorAll('.basicModal ' + elem)
 	else                 return document.querySelector('.basicModal ' + elem)
@@ -83,23 +83,34 @@ const build = function(data) {
 
 	// Cancel-button
 	if (data.buttons.cancel!=null) {
+		let html_attributes = ''
+		if(data.buttons.cancel.attributes!=null) {
+			data.buttons.cancel.attributes.forEach(function (item, index) {
+			  html_attributes += `${item[0]}='${item[1]}' `;
+			});
+		}
 		if (data.buttons.cancel.class.indexOf('basicModal__xclose')===-1) {
 
 			// Default close-button
-			html +=	`<a id='basicModal__cancel' class='basicModal__button ${ data.buttons.cancel.class }'>${ data.buttons.cancel.title }</a>`
+			html +=	`<a id='basicModal__cancel' class='basicModal__button ${ data.buttons.cancel.class }' ${ html_attributes } >${ data.buttons.cancel.title }</a>`
 
 		} else {
 
 			// Custom close-button for the login-theme
-			html += `<div id='basicModal__cancel' class='basicModal__button ${ data.buttons.cancel.class }' aria-label='close'>${ icon }</div>`
+			html += `<div id='basicModal__cancel' class='basicModal__button ${ data.buttons.cancel.class }' aria-label='close' ${ html_attributes } >${ icon }</div>`
 
 		}
 	}
 
 	// Action-button
 	if (data.buttons.action!=null) {
-
-		html += `<a id='basicModal__action' class='basicModal__button ${ data.buttons.action.class }'>${ data.buttons.action.title }</a>`
+		let html_attributes = ''
+		if(data.buttons.action.attributes!=null) {
+			data.buttons.action.attributes.forEach(function (item, index) {
+			  html_attributes += `${item[0]}='${item[1]}' `;
+			});
+		}
+		html += `<a id='basicModal__action' class='basicModal__button ${ data.buttons.action.class }' ${ html_attributes  }>${ data.buttons.action.title }</a>`
 
 	}
 
@@ -226,6 +237,14 @@ export const show = function(data) {
 	// If there is no input but a select, select it
 	let select = dom('select')
 	if (input==null && select!=null) select.focus()
+
+	// If there is no input/select but an action button, select it
+	let action = dom('#basicModal__action')
+	if (input==null && select==null && action!=null) action.focus()
+
+	// If there is no input/select/action but a cancel button, select it
+	let cancel = dom('#basicModal__cancel')
+	if (input==null && select==null && action==null && cancel!=null) cancel.focus()
 
 	// Execute callback when available
 	if (data.callback!=null) data.callback(data)
