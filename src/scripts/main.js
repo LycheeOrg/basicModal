@@ -145,7 +145,12 @@ export const getValues = function() {
 	each(selects, (select) => {
 
 		let name  = select.getAttribute('name')
-		let value = select.options[select.selectedIndex].value
+		let value = null
+		if (select.selectedIndex >= 0) {
+			value = select.options[select.selectedIndex].value
+		} else {
+			value = null
+		}
 
 		// Store name and value of select
 		values[name] = value
